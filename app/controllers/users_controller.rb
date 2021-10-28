@@ -13,13 +13,13 @@ class UsersController < ApplicationController
 
   def follow
     @user = User.find(params[:id])
-    Follower.create!(follower_id: current_user.id, followee_id: @user.id) unless current_user == @user
+    Follower.create!(follower_id: current_user.id, user_id: @user.id) unless current_user == @user
     redirect_to @user
   end
 
   def unfollow
     @user = User.find(params[:id])
-    Follower.destroy_by(follower_id: current_user.id, followee_id: @user.id) unless current_user == @user
+    Follower.destroy_by(follower_id: current_user.id, user_id: @user.id) unless current_user == @user
     redirect_to @user
   end
 end
