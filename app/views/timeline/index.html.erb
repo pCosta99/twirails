@@ -14,4 +14,11 @@
     <h2>Add a tweet:</h2>
     <%= render 'tweets/form', user: @user, tweet: @user.tweets.build %>
   </div>
+
+  <div>
+    <h2 class="font-bold text-5xl">Tweets</h2>
+    <% @all_tweets.each do |tweet| %>
+        <%= render tweet %>
+    <% end %>
+  </div>
 </div>
