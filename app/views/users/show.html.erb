@@ -18,9 +18,15 @@
   </div>
 
   <h2 class="font-bold text-center">Followers</h2>
-  <% @user.followers.each do |follower| %>
+  <% @user.list_of_followers.each do |follower| %>
+    <%= follower.email %>
   <% end %>
+
   <h2 class="font-bold text-center">Following</h2>
+  <% @user.list_of_following.each do |following| %>
+    <%= following.email %>
+  <% end %>
+
   <h2 class="font-bold text-center">Tweets</h2>
   <% if @user.tweets.exists? %>
     <% @user.tweets.each do |tweet| %>
