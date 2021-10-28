@@ -1,0 +1,8 @@
+<div>
+  <h1 class="font-extrabold text-5xl">Users</h1>
+
+  <% @users.each do |user| %>
+    <%= link_to user.email, user %>
+    <br>
+  <% end %>
+</div>
