@@ -1,0 +1,12 @@
+<h1>Timeline#index</h1>
+<p>Find me in app/views/timeline/index.html.erb</p>
+
+  <ul>
+    <% if user_signed_in? %>
+      <li class="text-red-500"><%= link_to "Sign Out", destroy_user_session_path(@user),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></li>
+    <% else %>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <% end %>
+  </ul>
