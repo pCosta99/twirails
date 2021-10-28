@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <p>
+      <strong>Tweet:</strong>
+      <%= tweet.body %>
+    </p>
+    <p>Created at: <%= tweet.created_at.strftime("%F %T") %></p>
+  </div>
+
+  <ul>
+    <li>
+      <p class="text-red-500">
+        <%= link_to "Destroy tweet", [tweet.user, tweet],
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %>
+      </p>
+    </li>
+    <li class="text-red-500">
+      <%= link_to "Edit tweet", edit_user_tweet_url(@user, tweet) %>
+    </li>
+  </ul>
+</div>

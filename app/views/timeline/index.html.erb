@@ -1,13 +1,16 @@
 <div>
   <h1 class="font-bold text-5xl">Timeline</h1>
-
-  <ul>
-    <% if user_signed_in? %>
+  <div>
+    <ul>
+      <li class="text-red-500"><%= link_to "Profile", @user %></li>
       <li class="text-red-500"><%= link_to "Sign Out", destroy_user_session_path(@user),
                     method: :delete,
                     data: { confirm: "Are you sure?" } %></li>
-    <% else %>
-      <li><%= link_to 'Sign in', new_user_session_path %></li>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
+
+  <div>
+    <h2>Add a tweet:</h2>
+    <%= render 'tweets/form', user: @user, tweet: @user.tweets.build %>
+  </div>
 </div>

@@ -1,0 +1,9 @@
+<%= form_with model: [user, tweet] do |form| %>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, class: 'form-textarea mt-1 block w-full border border-red-500' %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
