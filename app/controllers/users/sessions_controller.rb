@@ -16,7 +16,8 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     super do
-      redirect_to new_user_session_path
+      # TODO: Stackoverflow this
+      redirect_to root_path
       return
     end
   end
