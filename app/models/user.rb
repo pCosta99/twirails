@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :tweet_like
   has_many :tweets, dependent: :destroy
   has_many :followers, dependent: :destroy, foreign_key: 'user_id'
+  has_many :tweet_likes, dependent: :destroy
 
   def list_of_followers
     Follower.where(user_id: id).map do |f|

@@ -33,11 +33,13 @@ class TweetsController < ApplicationController
   end
 
   def tweet_like
-    @current_user = current_user
-    @user = User.find(params[:user_id])
-    @tweet = Tweet.find(params[:tweet_id])
+    TweetLike.create(user_id: current_user.id, tweet_id: params[:id])
 
-    @tweet.tweet_likes.build.save
+    redirect_to root_path
+  end
+
+  def tweet_dislike
+    TweetLike.destroy_by(user_id: current_user.id, tweet_id: params[:id])
 
     redirect_to root_path
   end

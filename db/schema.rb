@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(version: 2021_10_29_005131) do
 
   create_table "tweet_likes", force: :cascade do |t|
     t.integer "tweet_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tweet_like_count"
     t.index ["tweet_id"], name: "index_tweet_likes_on_tweet_id"
+    t.index ["user_id"], name: "index_tweet_likes_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -50,5 +51,6 @@ ActiveRecord::Schema.define(version: 2021_10_29_005131) do
   end
 
   add_foreign_key "tweet_likes", "tweets"
+  add_foreign_key "tweet_likes", "users"
   add_foreign_key "tweets", "users"
 end
