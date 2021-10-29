@@ -29,8 +29,8 @@
   <% end %>
 
   <h2 class="font-bold text-center">Tweets</h2>
-  <% if @user.tweets.exists? %>
-    <% @user.tweets.each do |tweet| %>
+  <% unless @tweets.empty? %>
+    <% @tweets.each do |tweet| %>
       <!-- Why is there a null tweet being displayed?? -->
       <% unless tweet.body.nil? %>
         <%= render tweet %>
