@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'timeline#index'
+  root 'twirails#index'
 
+  get '/home', to: 'timeline#index'
   put '/tweets/:id/like', to: 'tweets#like', as: 'tweet_like'
   put '/tweets/:id/dislike', to: 'tweets#dislike', as: 'tweet_dislike'
 
