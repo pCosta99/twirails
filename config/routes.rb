@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: %i[show index] do
     member do
-      get 'follow'
-      get 'unfollow'
+      put 'follow'
+      put 'unfollow'
     end
     resources :tweets
   end

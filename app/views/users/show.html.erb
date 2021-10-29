@@ -5,9 +5,9 @@
   <div>
     <% unless @my_profile %>
       <% if @following %>
-        <li class="text-red-500"><%= link_to "Unfollow", unfollow_user_path(@user) %></li>
+        <li class="text-red-500"><%= button_to "Unfollow", unfollow_user_path(@user), method: :put %></li>
       <% else %>
-        <li class="text-red-500"><%= link_to "Follow", follow_user_path(@user) %></li>
+        <li class="text-red-500"><%= button_to "Follow", follow_user_path(@user), method: :put %></li>
       <% end %>
     <% end %>
     <ul>
