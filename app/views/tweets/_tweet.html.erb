@@ -4,7 +4,8 @@
       <strong>Tweet:</strong>
       <%= tweet.body %>
     </p>
-    <p>Created at: <%= tweet.created_at.strftime("%F %T") %></p>
+    <p>Updated at: <%= tweet.created_at.strftime("%F %T") %></p>
+    <p><%= tweet.like_count.to_i %> likes</p>
   </div>
 
   <ul>
