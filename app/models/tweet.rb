@@ -6,4 +6,8 @@ class Tweet < ApplicationRecord
   def liked?(user)
     likes.any? { |like| like.user_id == user.id }
   end
+
+  def owned?(user)
+    user_id == user.id
+  end
 end

@@ -1,5 +1,11 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  before_action only: %i[edit update destroy] do
+    is_owner = current_user.id == params[:user_id].to_i
+    exists = Tweet.exists?(params[:id].to_i)
+
+    redirect_to root_path unless is_owner && exists
+  end
 
   def edit
     @user = current_user
@@ -35,13 +41,13 @@ class TweetsController < ApplicationController
   def like
     Like.create(user_id: current_user.id, tweet_id: params[:id])
 
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def dislike
     Like.destroy_by(user_id: current_user.id, tweet_id: params[:id])
 
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
