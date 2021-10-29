@@ -1,0 +1,22 @@
+<nav class="flex px-8 bg-gray-100 justify-between">
+  <div class="flex items-center space-x-3">
+    <% if user_signed_in? %>
+      <%= button_to "Timeline", root_path, method: :get, class: "block p-3" %>
+      <%= button_to "Users", users_path, method: :get, class: "block p-3" %>
+    <% end %>
+  </div>
+
+  <div class="flex items-center space-x-3">
+    <% if user_signed_in? %>
+      <%= button_to "Profile", user_path(current_user), method: :get, class: "block p-3" %>
+      <%= button_to "Sign Out", destroy_user_session_path(current_user),
+                    method: :delete,
+                    class: "block p-3",
+                    data: { confirm: "Are you sure?" } %></li>
+
+    <% else %>
+      <%= button_to "Sign in", new_user_session_path, method: :get, class: "block p-3" %>
+      <%= button_to "Sign up", new_user_registration_path, method: :get, class: "block p-3" %>
+    <% end %>
+  </div>
+</nav>

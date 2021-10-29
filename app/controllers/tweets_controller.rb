@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
     is_owner = current_user.id == params[:user_id].to_i
     exists = Tweet.exists?(params[:id].to_i)
 
-    redirect_to root_path unless is_owner && exists
+    redirect_back(fallback_location: home_path) unless is_owner && exists
   end
 
   def edit
@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
     @tweet = @user.tweets.find(params[:id])
 
     if @tweet.update(tweet_params)
-      redirect_to root_path
+      redirect_to home_path
     else
       render :edit
     end
@@ -27,7 +27,7 @@ class TweetsController < ApplicationController
     @user = current_user
     @tweet = @user.tweets.create(tweet_params)
 
-    redirect_to root_path
+    redirect_to home_path
   end
 
   def destroy
@@ -35,19 +35,19 @@ class TweetsController < ApplicationController
     @tweet = @user.tweets.find(params[:id])
     @tweet.destroy
 
-    redirect_to root_path
+    redirect_to home_path
   end
 
   def like
     Like.create(user_id: current_user.id, tweet_id: params[:id])
 
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: home_path)
   end
 
   def dislike
     Like.destroy_by(user_id: current_user.id, tweet_id: params[:id])
 
-    redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: home_path)
   end
 
   private

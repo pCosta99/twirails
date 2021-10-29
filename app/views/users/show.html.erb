@@ -5,17 +5,11 @@
   <div>
     <% unless @my_profile %>
       <% if @following %>
-        <li class="text-red-500"><%= link_to "Unfollow", unfollow_user_path(@user) %></li>
+        <li class="text-red-500"><%= button_to "Unfollow", unfollow_user_path(@user), method: :put %></li>
       <% else %>
-        <li class="text-red-500"><%= link_to "Follow", follow_user_path(@user) %></li>
+        <li class="text-red-500"><%= button_to "Follow", follow_user_path(@user), method: :put %></li>
       <% end %>
     <% end %>
-    <ul>
-        <li class="text-red-500"><%= link_to "Timeline", root_path %></li>
-        <li class="text-red-500"><%= link_to "Sign Out", destroy_user_session_path(@user),
-                      method: :delete,
-                      data: { confirm: "Are you sure?" } %></li>
-    </ul>
   </div>
 
   <h2 class="font-bold text-center">Followers</h2>

@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -19,7 +22,9 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+      <div>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

@@ -1,0 +1,2 @@
+class TwirailsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+module TwirailsHelper
+end
