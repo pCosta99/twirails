@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @my_profile = current_user == @user
     @following = @user.followers.exists?(follower_id: current_user.id)
+    @tweets = @user.tweets.sort_by(&:updated_at).reverse
   end
 
   def follow

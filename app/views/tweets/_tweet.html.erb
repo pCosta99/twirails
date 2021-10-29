@@ -8,15 +8,22 @@
   </div>
 
   <ul>
-    <li>
-      <p class="text-red-500">
-        <%= link_to "Destroy tweet", [tweet.user, tweet],
+    <% if tweet.owned?(current_user) %>
+      <li>
+        <%= button_to "Destroy tweet", [tweet.user, tweet],
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
-      </p>
-    </li>
-    <li class="text-red-500">
-      <%= link_to "Edit tweet", edit_user_tweet_url(@user, tweet) %>
+      </li>
+      <li>
+        <%= button_to "Edit tweet", edit_user_tweet_url(tweet.user, tweet), method: :get %>
+      </li>
+    <% end %>
+    <li>
+      <% if tweet.liked?(current_user) %>
+        <%= button_to "Dislike", tweet_dislike_url(tweet), method: :put %>
+      <% else %>
+        <%= button_to "Like", tweet_like_url(tweet), method: :put %>
+      <% end %>
     </li>
   </ul>
 </div>
