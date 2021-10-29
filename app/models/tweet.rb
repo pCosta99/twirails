@@ -1,9 +1,9 @@
 class Tweet < ApplicationRecord
   belongs_to :user
 
-  has_many :tweet_likes
+  has_many :likes
 
   def liked?(user)
-    tweet_likes.any? { |like| like.user_id == user.id }
+    likes.any? { |like| like.user_id == user.id }
   end
 end

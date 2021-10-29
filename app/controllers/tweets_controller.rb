@@ -32,14 +32,14 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
-  def tweet_like
-    TweetLike.create(user_id: current_user.id, tweet_id: params[:id])
+  def like
+    Like.create(user_id: current_user.id, tweet_id: params[:id])
 
     redirect_to root_path
   end
 
-  def tweet_dislike
-    TweetLike.destroy_by(user_id: current_user.id, tweet_id: params[:id])
+  def dislike
+    Like.destroy_by(user_id: current_user.id, tweet_id: params[:id])
 
     redirect_to root_path
   end
