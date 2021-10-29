@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_203712) do
+ActiveRecord::Schema.define(version: 2021_10_29_005131) do
 
   create_table "followers", force: :cascade do |t|
     t.integer "follower_id"
@@ -20,11 +20,20 @@ ActiveRecord::Schema.define(version: 2021_10_28_203712) do
     t.index ["follower_id", "user_id"], name: "index_followers_on_follower_id_and_user_id", unique: true
   end
 
+  create_table "tweet_likes", force: :cascade do |t|
+    t.integer "tweet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "tweet_like_count"
+    t.index ["tweet_id"], name: "index_tweet_likes_on_tweet_id"
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "tweet_like_count"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -40,5 +49,6 @@ ActiveRecord::Schema.define(version: 2021_10_28_203712) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tweet_likes", "tweets"
   add_foreign_key "tweets", "users"
 end

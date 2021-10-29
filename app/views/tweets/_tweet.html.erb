@@ -14,9 +14,12 @@
                     method: :delete,
                     data: { confirm: "Are you sure?" } %>
       </p>
+      <p class="text-red-500">
+        <%= link_to "Like", user_tweet_po_crl_path(tweet.user, tweet) %>
+      </p>
     </li>
     <li class="text-red-500">
-      <%= link_to "Edit tweet", edit_user_tweet_url(@user, tweet) %>
+      <%= link_to "Edit tweet", edit_user_tweet_url(tweet.user, tweet) %>
     </li>
   </ul>
 </div>

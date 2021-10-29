@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get 'follow'
       get 'unfollow'
     end
-    resources :tweets
+    resources :tweets do
+      get 'tweet_like', as: 'po_crl'
+    end
   end
 end
