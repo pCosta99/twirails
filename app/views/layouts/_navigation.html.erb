@@ -15,8 +15,8 @@
                     data: { confirm: "Are you sure?" } %></li>
 
     <% else %>
-      <a class="block p-3">Sign Up</a>
-      <a class="block p-3">Sign in</a>
+      <%= button_to "Sign in", new_user_session_path, method: :get, class: "block p-3" %>
+      <%= button_to "Sign up", new_user_registration_path, method: :get, class: "block p-3" %>
     <% end %>
   </div>
 </nav>
