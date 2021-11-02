@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get '/404', to: 'errors#not_found'
   get '/500', to: 'errors#internal_server'
 
+  # Dark/Light mode
+  get '/moon', to: 'application#moon', as: 'moon'
+  get '/sun', to: 'application#sun', as: 'sun'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
