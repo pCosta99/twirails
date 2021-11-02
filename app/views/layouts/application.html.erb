@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="dark:bg-black flex-col">
     <header>
       <%= render 'layouts/navigation' %>
     </header>
@@ -21,10 +21,8 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <div>
-        <%= yield %>
-      </div>
+    <main>
+      <%= yield %>
     </main>
   </body>
 </html>

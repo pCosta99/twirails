@@ -1,15 +1,18 @@
-<div>
-  <h1 class="font-bold text-5xl">Timeline</h1>
-
-  <div>
-    <h2>Add a tweet:</h2>
-    <%= render 'tweets/form', user: @user, tweet: @user.tweets.build %>
+<div class="mx-auto md:w-1/3 w-full">
+  <div class="border">
+    <h1 class="font-bold text-5xl text-center text-gray-200">Timeline</h1>
   </div>
 
-  <div>
-    <h2 class="font-bold text-5xl">Tweets</h2>
-    <% @all_tweets.each do |tweet| %>
-        <%= render tweet %>
+  <div class="border flex">
+      <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
+    <div class="ml-1 w-full">
+      <%= render 'tweets/form', user: @user, tweet: @user.tweets.build %>
+    </div>
+  </div>
+
+  <% @all_tweets.each do |tweet| %>
+    <%= link_to [tweet.user, tweet] do %>
+      <%= render tweet %>
     <% end %>
-  </div>
+  <% end %>
 </div>

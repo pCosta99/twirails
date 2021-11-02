@@ -2,8 +2,15 @@ Rails.application.routes.draw do
   root 'twirails#index'
 
   get '/home', to: 'timeline#index'
-  put '/tweets/:id/like', to: 'tweets#like', as: 'tweet_like'
-  put '/tweets/:id/dislike', to: 'tweets#dislike', as: 'tweet_dislike'
+
+  # Like / dislike / flip tweet
+  put '/tweets/:tweet_id/like', to: 'tweets#like', as: 'tweet_like'
+  put '/tweets/:tweet_id/dislike', to: 'tweets#dislike', as: 'tweet_dislike'
+  put '/tweets/:tweet_id/flip_like', to: 'tweets#flip_like', as: 'tweet_flip_like'
+
+  # Custom error handling
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
@@ -12,6 +19,8 @@ Rails.application.routes.draw do
     member do
       put 'follow'
       put 'unfollow'
+      get 'followers'
+      get 'following'
     end
     resources :tweets
   end

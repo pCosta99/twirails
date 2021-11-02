@@ -1,30 +1,44 @@
-<div>
+<div class="flex border relative">
+  <!-- transforming a div into a link -->
+  <!-- https://stackoverflow.com/questions/796087/make-a-div-into-a-link/3494108#3494108 -->
+  <%= link_to [tweet.user, tweet] do %>
+    <span class="absolute w-full h-full z-10 top-0 left-0"></span>
+  <% end %>
   <div>
-    <p>
-      <strong>Tweet:</strong>
-      <%= tweet.body %>
-    </p>
-    <p>Updated at: <%= tweet.created_at.strftime("%F %T") %></p>
-    <p><%= tweet.like_count.to_i %> likes</p>
+    <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
   </div>
+  <div class="w-full">
+    <div class="text-gray-200">
+      <div class="flex">
+        <%= render tweet.user %>
+        <p class="mr-1 ml-1">·</p>
+        <p><%= tweet.time %></p>
+      </div>
+      <p><%= tweet.body %></p>
+    </div>
 
-  <ul>
-    <% if tweet.owned?(current_user) %>
-      <li>
-        <%= button_to "Destroy tweet", [tweet.user, tweet],
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %>
-      </li>
-      <li>
-        <%= button_to "Edit tweet", edit_user_tweet_url(tweet.user, tweet), method: :get %>
-      </li>
-    <% end %>
-    <li>
-      <% if tweet.liked?(current_user) %>
-        <%= button_to "Dislike", tweet_dislike_url(tweet), method: :put %>
-      <% else %>
-        <%= button_to "Like", tweet_like_url(tweet), method: :put %>
+    <div class="flex items-center justify-between">
+      <%= link_to tweet_flip_like_url(tweet), method: :put do %>
+        <div class="flex items-center text-gray-200">
+          <!-- use alpinejs / stimulusjs to color the heart if it is liked (dynamic fill) -->
+          <% if tweet.liked?(current_user) %>
+            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <%= tweet.like_count.to_i %>
+          <% else %>
+            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <%= tweet.like_count.to_i %>
+          <% end %>
+        </div>
       <% end %>
-    </li>
-  </ul>
+      <% if tweet.owned?(current_user) %>
+          <%= link_to "Destroy tweet", [tweet.user, tweet],
+                      method: :delete,
+                      data: { confirm: "Are you sure?" },
+                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+          <%= link_to "Edit tweet", edit_user_tweet_url(tweet.user, tweet),
+                      method: :get,
+                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+      <% end %>
+    </div>
+  </div>
 </div>
