@@ -5,12 +5,12 @@
     <span class="absolute w-full h-full z-10 top-0 left-0"></span>
   <% end %>
   <div>
-    <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
+    <%= image_tag 'default_user.png', alt: 'default-user', class: 'relative z-20 h-16 w-16 bg-transparent' %>
   </div>
   <div class="w-full">
     <div class="dark:text-gray-200">
       <div class="flex">
-        <%= render tweet.user %>
+        <%= render tweet.user, class: "relative z-20" %>
         <p class="mr-1 ml-1">·</p>
         <p><%= tweet.time %></p>
       </div>
@@ -22,10 +22,10 @@
         <div class="flex items-center dark:text-gray-200">
           <!-- use alpinejs / stimulusjs to color the heart if it is liked (dynamic fill) -->
           <% if tweet.liked?(current_user) %>
-            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <svg class="relative z-20 mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
             <%= tweet.like_count.to_i %>
           <% else %>
-            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <svg class="relative z-20 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
             <%= tweet.like_count.to_i %>
           <% end %>
         </div>
@@ -34,10 +34,10 @@
           <%= link_to "Destroy tweet", [tweet.user, tweet],
                       method: :delete,
                       data: { confirm: "Are you sure?" },
-                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+                      class: 'relative z-20 font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
           <%= link_to "Edit tweet", edit_user_tweet_url(tweet.user, tweet),
                       method: :get,
-                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+                      class: 'relative z-20 font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
       <% end %>
     </div>
   </div>

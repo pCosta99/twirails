@@ -1,0 +1,53 @@
+<!-- adapted from https://tailwindui.com/components/application-ui/overlays/modals -->
+<div id="likes_modal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <!--
+      Modal panel, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div class="bg-white inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="border sm:flex sm:flex-col w-full py-2">
+          <div class="flex items-center rounded-full">
+            <svg onclick="document.getElementById('likes_modal').classList.add('hidden');"xmlns="http://www.w3.org/2000/svg" class="ml-4" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 256 256" xml:space="preserve">
+              <desc>Created with Fabric.js 1.7.22</desc>
+              <defs></defs>
+              <g transform="translate(128 128) scale(0.72 0.72)" style="">
+                <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)" >
+                <path d="M 21.607 89.348 L 0.652 68.393 c -0.869 -0.869 -0.869 -2.279 0 -3.149 L 65.244 0.652 c 0.869 -0.869 2.279 -0.869 3.149 0 l 20.955 20.955 c 0.869 0.869 0.869 2.279 0 3.149 L 24.756 89.348 C 23.887 90.217 22.477 90.217 21.607 89.348 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                <path d="M 89.348 68.393 L 68.393 89.348 c -0.869 0.869 -2.279 0.869 -3.149 0 L 0.652 24.756 c -0.869 -0.869 -0.869 -2.279 0 -3.149 L 21.607 0.652 c 0.869 -0.869 2.279 -0.869 3.149 0 l 64.592 64.592 C 90.217 66.113 90.217 67.523 89.348 68.393 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+              </g>
+              </g>
+            </svg>
+            <p class="font-semibold text-center ml-4">Liked by</p>
+          </div>
+      </div>
+        <div class="sm:flex sm:items-start">
+          <div class="mt-3 flex flex-col text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <%= render @tweet.likes.map{|l| l.user} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
