@@ -13,7 +13,24 @@ class Tweet < ApplicationRecord
   end
 
   def time
-    hour_diff = ((Time.now - updated_at) / 3600).round
-    hour_diff > 24 ? updated_at.strftime('%b %d') : "#{hour_diff}h"
+    diff = Time.now - updated_at
+    hour_diff = (diff / 3600).round
+    hour_diff > 24 ? updated_at.strftime('%b %d') : time_suffix(diff)
+  end
+
+  private
+
+  # This method is responsible for choosing between displaying
+  # the time passed as hours/minutes/seconds when less than 24h have passed
+  def time_suffix(time)
+    # Less than 1 minute
+    if time < 60
+      "#{time.round}s"
+    # Less than 1 hour
+    elsif time < 3600
+      "#{(time / 60).round}m"
+    else
+      "#{(time / 3600).round}h"
+    end
   end
 end
