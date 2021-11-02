@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex border">
   <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
   <div class="w-full">
     <div class="text-gray-200">
@@ -14,8 +14,13 @@
       <%= button_to tweet_flip_like_url(tweet), method: :put do %>
         <div class="flex items-center text-gray-200">
           <!-- use alpinejs / stimulusjs to color the heart if it is liked (dynamic fill) -->
-          <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-          <%= tweet.like_count.to_i %>
+          <% if tweet.liked?(current_user) %>
+            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <%= tweet.like_count.to_i %>
+          <% else %>
+            <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+            <%= tweet.like_count.to_i %>
+          <% end %>
         </div>
       <% end %>
       <% if tweet.owned?(current_user) %>

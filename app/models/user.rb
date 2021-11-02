@@ -19,4 +19,12 @@ class User < ApplicationRecord
       User.find(f.user_id)
     end
   end
+
+  def following_count
+    Follower.where(follower_id: id).count
+  end
+
+  def follower_count
+    followers.count
+  end
 end
