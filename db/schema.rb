@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_10_29_005131) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "followers", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "user_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_10_29_005131) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "tweet_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "tweet_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_likes_on_tweet_id"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_10_29_005131) do
 
   create_table "tweets", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "like_count"
