@@ -1,7 +1,7 @@
 <nav class="flex px-8 bg-gray-100 justify-between">
   <div class="flex items-center space-x-3">
     <% if user_signed_in? %>
-      <%= button_to "Timeline", root_path, method: :get, class: "block p-3" %>
+      <%= button_to "Timeline", home_path, method: :get, class: "block p-3" %>
       <%= button_to "Users", users_path, method: :get, class: "block p-3" %>
     <% end %>
   </div>

@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  before_action :tweet_liked?, only: [:flip_like]
   before_action only: %i[edit update destroy] do
     is_owner = current_user.id == params[:user_id].to_i
     exists = Tweet.exists?(params[:id].to_i)
@@ -39,18 +40,32 @@ class TweetsController < ApplicationController
   end
 
   def like
-    Like.create(user_id: current_user.id, tweet_id: params[:id])
+    Like.create(user_id: current_user.id, tweet_id: params[:tweet_id])
 
     redirect_back(fallback_location: home_path)
   end
 
   def dislike
-    Like.destroy_by(user_id: current_user.id, tweet_id: params[:id])
+    Like.destroy_by(user_id: current_user.id, tweet_id: params[:tweet_id])
+
+    redirect_back(fallback_location: home_path)
+  end
+
+  def flip_like
+    if @tweet_liked
+      Like.destroy_by(user_id: current_user.id, tweet_id: params[:tweet_id])
+    else
+      Like.create(user_id: current_user.id, tweet_id: params[:tweet_id])
+    end
 
     redirect_back(fallback_location: home_path)
   end
 
   private
+
+  def tweet_liked?
+    @tweet_liked = Like.exists?(user_id: current_user.id, tweet_id: params[:tweet_id])
+  end
 
   def tweet_params
     params.require(:tweet).permit(:body)
