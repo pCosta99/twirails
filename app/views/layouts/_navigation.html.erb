@@ -6,6 +6,7 @@
     <% end %>
   </div>
 
+  <!-- BUG: The buttons above not existing puts this in the wrong position -->
   <% if cookies[:theme] %>
     <%= button_to '☀️', sun_path, method: :get, class: "block p-3" %>
   <% else %>
