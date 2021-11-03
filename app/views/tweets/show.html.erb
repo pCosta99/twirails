@@ -1,3 +1,4 @@
+<%= render 'tweets/likes_modal' %>
 <div class="mx-auto md:w-1/3 w-full">
   <div class="flex border">
     <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
@@ -24,14 +25,19 @@
             <% end %>
           </div>
         <% end %>
+
+        <button onclick="toggle_modal('likes_modal')" class="font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500">
+          Likes
+        </button>
+
         <% if @tweet.owned?(current_user) %>
-            <%= link_to "Destroy tweet", [@tweet.user, @tweet],
-                        method: :delete,
-                        data: { confirm: "Are you sure?" },
-                        class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
-            <%= link_to "Edit tweet", edit_user_tweet_url(@tweet.user, @tweet),
-                        method: :get,
-                        class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+          <%= link_to "Destroy tweet", [@tweet.user, @tweet],
+                      method: :delete,
+                      data: { confirm: "Are you sure?" },
+                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+          <%= link_to "Edit tweet", edit_user_tweet_url(@tweet.user, @tweet),
+                      method: :get,
+                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
         <% end %>
       </div>
     </div>
