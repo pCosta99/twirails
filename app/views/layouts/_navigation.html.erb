@@ -7,9 +7,9 @@
   </div>
 
   <% if cookies[:theme] %>
-    <%= button_to 'Light Mode', sun_path, method: :get, class: "block p-3" %>
+    <%= button_to '☀️', sun_path, method: :get, class: "block p-3" %>
   <% else %>
-    <%= button_to 'Dark Mode', moon_path, method: :get, class: "block p-3"%>
+    <%= button_to '🌙', moon_path, method: :get, class: "block p-3"%>
   <% end %>
 
   <div class="flex items-center space-x-3">
