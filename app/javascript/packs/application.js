@@ -8,10 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application.scss"
-import { toggleModal } from "./modal"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-export { toggleModal }
