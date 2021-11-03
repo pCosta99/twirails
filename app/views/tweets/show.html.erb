@@ -1,44 +1,46 @@
-<%= render 'tweets/likes_modal' %>
-<div class="mx-auto md:w-1/3 w-full">
-  <div class="flex border">
-    <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
-    <div class="w-full">
-      <div class="dark:text-gray-200">
-        <div class="flex">
-          <%= render @tweet.user %>
-          <p class="mr-1 ml-1">·</p>
-          <p><%= @tweet.time %></p>
-        </div>
-        <p><%= @tweet.body %></p>
-      </div>
-
-      <div class="flex items-center justify-between">
-        <%= link_to tweet_flip_like_url(@tweet), method: :put do %>
-          <div class="flex items-center dark:text-gray-200">
-            <!-- use alpinejs / stimulusjs to color the heart if it is liked (dynamic fill)? -->
-            <% if @tweet.liked?(current_user) %>
-              <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-              <%= @tweet.like_count.to_i %>
-            <% else %>
-              <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-              <%= @tweet.like_count.to_i %>
-            <% end %>
+<div>
+  <div class="mx-auto md:w-1/3 w-full">
+    <div class="flex border">
+      <%= image_tag 'default_user.png', alt: 'default-user', class: 'h-16 w-16 bg-transparent' %>
+      <div class="w-full">
+        <div class="dark:text-gray-200">
+          <div class="flex">
+            <%= render @tweet.user %>
+            <p class="mr-1 ml-1">·</p>
+            <p><%= @tweet.time %></p>
           </div>
-        <% end %>
+          <p><%= @tweet.body %></p>
+        </div>
 
-        <button onclick="document.getElementById('likes_modal').classList.remove('hidden');" class="font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500">
-          Likes
-        </button>
+        <div data-controller="form" class="flex items-center justify-between">
+          <%= link_to tweet_flip_like_url(@tweet), method: :put do %>
+            <div class="flex items-center dark:text-gray-200">
+              <!-- use alpinejs / stimulusjs to color the heart if it is liked (dynamic fill)? -->
+              <% if @tweet.liked?(current_user) %>
+                <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+                <%= @tweet.like_count.to_i %>
+              <% else %>
+                <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+                <%= @tweet.like_count.to_i %>
+              <% end %>
+            </div>
+          <% end %>
 
-        <% if @tweet.owned?(current_user) %>
-          <%= link_to "Destroy tweet", [@tweet.user, @tweet],
-                      method: :delete,
-                      data: { confirm: "Are you sure?" },
-                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
-          <%= link_to "Edit tweet", edit_user_tweet_url(@tweet.user, @tweet),
-                      method: :get,
-                      class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
-        <% end %>
+          <button data-action="click->form#toggle" class="font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500">
+            <p id="likes_button">Likes</p>
+          </button>
+
+          <% if @tweet.owned?(current_user) %>
+            <%= link_to "Destroy tweet", [@tweet.user, @tweet],
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+            <%= link_to "Edit tweet", edit_user_tweet_url(@tweet.user, @tweet),
+                        method: :get,
+                        class: 'font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500' %>
+          <% end %>
+          <%= render 'tweets/likes_modal' %>
+        </div>
       </div>
     </div>
   </div>

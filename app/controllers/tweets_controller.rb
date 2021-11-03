@@ -63,7 +63,9 @@ class TweetsController < ApplicationController
       Like.create(user_id: current_user.id, tweet_id: params[:tweet_id])
     end
 
-    redirect_back(fallback_location: home_path)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
