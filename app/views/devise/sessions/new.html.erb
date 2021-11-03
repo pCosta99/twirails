@@ -3,7 +3,7 @@
     <div class="w-full mb-2">
       <div class="flex items-center">
         <i class='ml-3 fill-current text-gray-400 text-xs z-10'></i>
-        <%= f.text_field :email, type: 'email', placeholder: "Email", class: "px-8 w-full border rounded py-2 text-gray-700 focus:outline-none" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", type: 'email', placeholder: "Email", class: "px-8 w-full border rounded py-2 text-gray-700 focus:outline-none" %>
       </div>
 
       <div class="w-full mb-2">
