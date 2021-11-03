@@ -10,9 +10,9 @@
     </div>
   </div>
 
-  <div>
-    <% @all_tweets.each do |tweet| %>
+  <% @all_tweets.each do |tweet| %>
+    <%= link_to [tweet.user, tweet] do %>
       <%= render tweet %>
     <% end %>
-  </div>
+  <% end %>
 </div>

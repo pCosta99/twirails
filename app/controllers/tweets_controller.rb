@@ -10,7 +10,12 @@ class TweetsController < ApplicationController
 
   def edit
     @user = current_user
-    @tweet = @user.tweets.find(params[:id])
+    @tweet = @user.tweets.find(params[:id]) or not_found
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @tweet = @user.tweets.find(params[:id]) or not_found
   end
 
   def update

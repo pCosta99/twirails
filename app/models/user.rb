@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   def list_of_followers
     Follower.where(user_id: id).map do |f|
-      User.find(f.follower_id)
+      f.user
     end
   end
 
   def list_of_following
     Follower.where(follower_id: id).map do |f|
-      User.find(f.user_id)
+      f.follower
     end
   end
 

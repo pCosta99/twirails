@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   put '/tweets/:tweet_id/dislike', to: 'tweets#dislike', as: 'tweet_dislike'
   put '/tweets/:tweet_id/flip_like', to: 'tweets#flip_like', as: 'tweet_flip_like'
 
+  # Custom error handling
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
