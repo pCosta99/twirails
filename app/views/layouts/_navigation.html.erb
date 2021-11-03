@@ -3,10 +3,12 @@
     <% if user_signed_in? %>
       <%= button_to "Timeline", home_path, method: :get, class: "block p-3" %>
       <%= button_to "Users", users_path, method: :get, class: "block p-3" %>
+    <% else %>
+      <%= button_to "Twirails", root_path, method: :get, class: "block p-3 mr-20" %>
     <% end %>
   </div>
 
-  <!-- BUG: The buttons above not existing puts this in the wrong position -->
+  <!-- BUG: The buttons above not existing puts this in the wrong position (Temporarily fixed with the twirails button  + mr-20) -->
   <% if cookies[:theme] %>
     <%= button_to '☀️', sun_path, method: :get, class: "block p-3" %>
   <% else %>
