@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<% if cookies[:theme] %>
+  <html class="dark bg-black">
+<% else %>
+  <html>
+<% end %>
   <head>
     <title>Twirails</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,7 +15,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="dark:bg-black flex-col">
+  <body class="flex-col">
     <header>
       <%= render 'layouts/navigation' %>
     </header>

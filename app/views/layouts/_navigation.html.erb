@@ -6,6 +6,12 @@
     <% end %>
   </div>
 
+  <% if cookies[:theme] %>
+    <%= button_to 'Light Mode', sun_path, method: :get, class: "block p-3" %>
+  <% else %>
+    <%= button_to 'Dark Mode', moon_path, method: :get, class: "block p-3"%>
+  <% end %>
+
   <div class="flex items-center space-x-3">
     <% if user_signed_in? %>
       <%= button_to "Profile", user_path(current_user), method: :get, class: "block p-3" %>
