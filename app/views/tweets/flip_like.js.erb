@@ -1,1 +1,14 @@
-console.log("im here")
+// Update the svg color
+var like_el = document.querySelector("#like_<%= @id %>")
+var count_el = document.querySelector("#like_count_<%= @id %>")
+if(like_el.attributes.fill.value == "none"){
+  // Update the number of likes
+  count_el.textContent = parseInt(count_el.textContent)+1
+  like_el.setAttribute("fill", "red")
+} else {
+  // Update the number of likes
+  count_el.textContent = parseInt(count_el.textContent)-1
+  like_el.setAttribute("fill", "none")
+}
+
+

@@ -57,14 +57,11 @@ class TweetsController < ApplicationController
   end
 
   def flip_like
+    @id = params[:tweet_id]
     if @tweet_liked
       Like.destroy_by(user_id: current_user.id, tweet_id: params[:tweet_id])
     else
       Like.create(user_id: current_user.id, tweet_id: params[:tweet_id])
-    end
-
-    respond_to do |format|
-      format.js
     end
   end
 
