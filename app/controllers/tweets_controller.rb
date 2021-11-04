@@ -2,9 +2,10 @@
 
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_user, only: %i[show]
   before_action :tweet_liked?, only: [:flip_like]
   before_action only: %i[edit update destroy] do
-    is_owner = current_user.id == params[:user_id].to_i
+    is_owner = current_user.name == params[:user_name]
     exists = Tweet.exists?(params[:id].to_i)
 
     redirect_back(fallback_location: home_path) unless is_owner && exists
@@ -16,7 +17,6 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
     @tweet = @user.tweets.find(params[:id]) or not_found
   end
 
@@ -77,6 +77,10 @@ class TweetsController < ApplicationController
   end
 
   private
+
+  def load_user
+    @user = User.find { |u| u.email.split('@').first == params[:user_name] }
+  end
 
   def tweet_liked?
     @tweet_liked = Like.exists?(user_id: current_user.id, tweet_id: params[:tweet_id])

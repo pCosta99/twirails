@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :followers, dependent: :destroy, foreign_key: 'user_id'
   has_many :tweet_likes, dependent: :destroy
 
+  def to_param
+    name
+  end
+
   def list_of_followers
     Follower.where(user_id: id).map(&:user)
   end
@@ -24,5 +28,9 @@ class User < ApplicationRecord
 
   def follower_count
     followers.count
+  end
+
+  def name
+    email.split('@').first
   end
 end
