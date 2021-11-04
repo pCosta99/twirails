@@ -42,10 +42,10 @@
             <p class="font-semibold text-center ml-4">Liked by</p>
           </div>
       </div>
-        <div class="sm:flex sm:items-start">
-          <div id ="user_list" class="mt-3 flex flex-col text-center sm:mt-0 sm:ml-4 sm:text-left">
+        <div data-controller="like-list" class="sm:flex sm:items-start">
+          <div data-like-list-target="like_list" id ="user_list" class="mt-3 flex flex-col text-center sm:mt-0 sm:ml-4 sm:text-left">
             <% @tweet.likes.each do |like| %>
-              <div data-like-target="list" id="user_<%= like.user.id %>"
+              <div id="user_<%= like.user.id %>"
                 <%= render like.user %>
               </div>
             <% end %>

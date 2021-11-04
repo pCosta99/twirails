@@ -19,5 +19,10 @@ export default class extends Controller {
       // Update the heart svg fill status
       this.heartTarget.setAttribute("fill", "none")
     }
+    this.listController.delete()
+  }
+
+  get listController() {
+    return this.application.getControllerForElementAndIdentifier(this.element, "like-list")
   }
 }
