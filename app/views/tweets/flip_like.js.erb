@@ -1,14 +1,23 @@
 // Update the svg color
-var like_el = document.querySelector("#like_<%= @id %>")
-var count_el = document.querySelector("#like_count_<%= @id %>")
+var like_el = document.querySelector("#like_<%= @tweet_id %>")
+var count_el = document.querySelector("#like_count_<%= @tweet_id %>")
+var user_el = document.querySelector("#user_<%= @id %>")
+var user_list_el = document.querySelector("#user_list")
 if(like_el.attributes.fill.value == "none"){
-  // Update the number of likes
+  // Up the number of likes
   count_el.textContent = parseInt(count_el.textContent)+1
   like_el.setAttribute("fill", "red")
+  if(user_el != null) {
+    user_el.classList.remove("class", "hidden")
+  } else {
+    const new_child = document.createElement('div');
+    new_child.id = "user_<%= @id %>"
+    new_child.innerHTML = "<%= j render @user %>"
+    user_list_el.appendChild(new_child)
+  }
 } else {
-  // Update the number of likes
+  // Down the number of likes
   count_el.textContent = parseInt(count_el.textContent)-1
   like_el.setAttribute("fill", "none")
+  user_el.setAttribute("class", "hidden")
 }
-
-
