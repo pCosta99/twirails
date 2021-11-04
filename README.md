@@ -1,5 +1,10 @@
 # README
 
+A experiment to learn some basic concepts of rails.
+
+There is one major design flaw, namely that likes are coupled to tweets in both controllers and views. 
+That should (but probably won't) be changed.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
