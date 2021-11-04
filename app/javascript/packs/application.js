@@ -13,3 +13,8 @@ import "controllers"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// application.js
+require("trix")
+require("@rails/actiontext")
+import "trix/dist/trix.css"

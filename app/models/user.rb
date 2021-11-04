@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,15 +11,11 @@ class User < ApplicationRecord
   has_many :tweet_likes, dependent: :destroy
 
   def list_of_followers
-    Follower.where(user_id: id).map do |f|
-      f.user
-    end
+    Follower.where(user_id: id).map(&:user)
   end
 
   def list_of_following
-    Follower.where(follower_id: id).map do |f|
-      f.follower
-    end
+    Follower.where(follower_id: id).map(&:follower)
   end
 
   def following_count
