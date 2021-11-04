@@ -12,7 +12,7 @@
           <p><%= @tweet.body %></p>
         </div>
 
-        <div data-controller="form" class="flex items-center justify-between">
+        <div data-controller="external-modal" class="flex items-center justify-between">
           <%= link_to tweet_flip_like_url(@tweet), method: :put, remote: true do %>
             <div class="flex items-center dark:text-gray-200">
               <% if @tweet.liked?(current_user) %>
@@ -25,7 +25,7 @@
             </div>
           <% end %>
 
-          <button data-action="click->form#toggle" class="font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500">
+          <button data-action="click->external-modal#toggle" class="font-bold rounded-lg px-4 bg-blue-400 hover:bg-blue-500">
             <p id="likes_button">Likes</p>
           </button>
 

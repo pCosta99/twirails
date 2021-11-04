@@ -1,5 +1,5 @@
 <!-- adapted from https://tailwindui.com/components/application-ui/overlays/modals -->
-<div data-form-target="modal" id="likes_modal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div data-external-modal-target="modal" id="likes_modal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <!--
       Background overlay, show/hide based on modal state.
@@ -28,7 +28,7 @@
     -->
     <div data-controller="modal" data-action="click@window->modal#outside" class="bg-white inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
       <div class="border sm:flex sm:flex-col w-full py-2">
-          <div data-action="click->form#toggle" class="flex items-center rounded-full">
+          <div data-action="click->external-modal#toggle" class="flex items-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-4" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 256 256" xml:space="preserve">
               <desc>Created with Fabric.js 1.7.22</desc>
               <defs></defs>
