@@ -5,7 +5,8 @@ class Tweet < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_rich_text :body
 
-  validates :body, length: { minimum: 5 }
+  # custom validation (Note the singular validate, not the pluralized validations)
+  validate :post_body_cant_be_empty
 
   def liked?(user)
     likes.any? { |like| like.user_id == user.id }
@@ -22,6 +23,11 @@ class Tweet < ApplicationRecord
   end
 
   private
+
+  # custom model validation to ensure the post body that Action Text uses is not empty
+  def post_body_cant_be_empty
+    errors.add(:body, "can't be empty") if body.blank?
+  end
 
   # This method is responsible for choosing between displaying
   # the time passed as hours/minutes/seconds when less than 24h have passed
