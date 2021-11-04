@@ -26,7 +26,7 @@
         From: "opacity-100 translate-y-0 sm:scale-100"
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
-    <div data-controller="modal" data-action="click@window->modal#outside" class="bg-white inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+    <div data-controller="modal like" data-action="click@window->modal#outside" class="bg-white inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
       <div class="border sm:flex sm:flex-col w-full py-2">
           <div data-action="click->external-modal#toggle" class="flex items-center rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-4" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="12" height="12" viewBox="0 0 256 256" xml:space="preserve">
@@ -45,7 +45,7 @@
         <div class="sm:flex sm:items-start">
           <div id ="user_list" class="mt-3 flex flex-col text-center sm:mt-0 sm:ml-4 sm:text-left">
             <% @tweet.likes.each do |like| %>
-              <div id="user_<%= like.user.id %>"
+              <div data-like-target="list" id="user_<%= like.user.id %>"
                 <%= render like.user %>
               </div>
             <% end %>

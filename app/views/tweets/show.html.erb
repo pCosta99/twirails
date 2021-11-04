@@ -12,16 +12,11 @@
           <p><%= @tweet.body %></p>
         </div>
 
-        <div data-controller="external-modal" class="flex items-center justify-between">
-          <%= link_to tweet_flip_like_url(@tweet), method: :put, remote: true do %>
+        <div data-controller="external-modal like" class="flex items-center justify-between">
+          <%= link_to tweet_flip_like_url(@tweet), method: :put, remote: true, data: { action: 'ajax:success->like#toggle'} do %>
             <div class="flex items-center dark:text-gray-200">
-              <% if @tweet.liked?(current_user) %>
-                <svg id="like_<%= @tweet.id %>" class="relative z-20 mr-1" xmlns="http://www.w3.org/2000/svg" fill="red" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-                <p id="like_count_<%= @tweet.id %>"><%= @tweet.like_count.to_i %></p>
-              <% else %>
-                <svg id="like_<%= @tweet.id %>" class="relative z-20 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
-                <p id="like_count_<%= @tweet.id %>"><%= @tweet.like_count.to_i %></p>
-              <% end %>
+             <svg data-like-target="heart" fill="<%= @tweet.liked?(current_user) ? 'red' : 'none' %>"id="like_<%= @tweet.id %>" class="relative z-20 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+              <p data-like-target="count" id="like_count_<%= @tweet.id %>"><%= @tweet.like_count.to_i %></p>
             </div>
           <% end %>
 
