@@ -1,0 +1,16 @@
+// Update the svg color
+var like_el = document.querySelector("#like_<%= @tweet_id %>")
+var user_el = document.querySelector("#user_<%= @id %>")
+var user_list_el = document.querySelector("#user_list")
+if(like_el.attributes.fill.value == "none"){
+  if(user_el != null) {
+    user_el.classList.remove("class", "hidden")
+  } else {
+    const new_child = document.createElement('div');
+    new_child.id = "user_<%= @id %>"
+    new_child.innerHTML = "<%= j render @user %>"
+    user_list_el.appendChild(new_child)
+  }
+} else {
+  user_el.setAttribute("class", "hidden")
+}
