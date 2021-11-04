@@ -2,28 +2,21 @@
 
 A experiment to learn some basic concepts of rails.
 
-There is one major design flaw, namely that likes are coupled to tweets in both controllers and views. 
-That should (but probably won't) be changed.
+## Failures:
+  * There is one major design flaw, namely that likes are coupled to tweets in both controllers and views. 
+    That should (but probably won't) be changed.
+  * Tailwind styles are very poorly organized and that led to a lot of unnecessary duplication.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Relevant info:
 
-Things you may want to cover:
+* Ruby version: 3.0.0 since Github Actions do not support versions above that
 
-* Ruby version
+* Configuration: No configuration needed (I believe!)
 
-* System dependencies
+* Database: Postgres (heroku doesn't permits SQL)
 
-* Configuration
+* Database initialization: rails db:create db:migrate db:seed
 
-* Database creation
+* How to run the test suite: rails test
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployment instructions: deployments are automatic on any push to main/develop (todo: separate qa from prod)
