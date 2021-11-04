@@ -1,6 +1,6 @@
   <div class="flex h-screen justify-center items-center">
     <div class="text-center"> <!-- ⬅️ THIS DIV WILL BE CENTERED -->
-        <h1 class="text-9xl font-extrabold dark:text-white text-center">
+      <h1 class="text-9xl font-extrabold <%= cookies[:theme] ? 'text-white' : 'text-black' %> text-center">
           Twirails
         </h1>
     </div>
