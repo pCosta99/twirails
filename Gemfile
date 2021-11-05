@@ -59,5 +59,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'bundle-audit'
+gem 'bundler-audit'
 gem 'tailwindcss-rails', '~> 0.5.1'
