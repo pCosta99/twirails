@@ -27,15 +27,21 @@ class TweetsController < ApplicationController
     if @tweet.update(tweet_params)
       redirect_to home_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def create
     @user = current_user
-    @tweet = @user.tweets.create(tweet_params)
+    @tweet = @user.tweets.new(tweet_params)
 
-    redirect_to home_path
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to home_path, notice: 'Tweet was successfully created.' }
+      else
+        format.html { redirect_to home_path, alert: 'Tweet must have some content.' }
+      end
+    end
   end
 
   def destroy
