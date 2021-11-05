@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Like < ApplicationRecord
   belongs_to :tweet, counter_cache: :like_count
   belongs_to :user

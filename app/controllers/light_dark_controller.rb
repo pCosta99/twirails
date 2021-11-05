@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LightDarkController < ApplicationController
   def moon
     cookies[:theme] = {

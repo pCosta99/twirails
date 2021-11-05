@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -61,4 +63,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'brakeman'
 gem 'bundler-audit'
+gem 'rubocop'
 gem 'tailwindcss-rails', '~> 0.5.1'
