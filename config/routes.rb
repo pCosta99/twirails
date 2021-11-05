@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
-  resources :users, param: :name, only: %i[show index] do
+  resources :users, param: :name, only: %i[show index], constraints: { name: %r{[^/]+} } do
     member do
       put 'follow'
       put 'unfollow'
