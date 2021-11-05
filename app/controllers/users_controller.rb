@@ -35,6 +35,6 @@ class UsersController < ApplicationController
   private
 
   def load_user
-    @user = User.find(params[:id])
+    @user = User.find { |u| u.email.split('@').first == params[:name] }
   end
 end
